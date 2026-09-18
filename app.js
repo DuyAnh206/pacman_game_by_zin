@@ -105,7 +105,6 @@ class Pacman {
     else if (activeKey === "ArrowUp") qDy = -1;
     else if (activeKey === "ArrowDown") qDy = 1;
 
-    // 1. VÙNG DUNG SAI NAM CHÂM (Bảo vệ thao tác phanh muộn và rẽ muộn/sớm)
     let isMoving = this.dx !== 0 || this.dy !== 0;
     if (isMoving) {
       let gridX = Math.round(this.x / SIZE);
@@ -115,23 +114,19 @@ class Pacman {
 
       let dist = Math.hypot(this.x - centerX, this.y - centerY);
 
-      // Nếu nằm trong bán kính 6 pixel quanh tâm ngã tư
       if (dist > 0 && dist <= 6) {
-        // Kiểm tra xem Pacman đang đi hướng RA XA khỏi tâm hay không
         let isMovingAway =
           (this.dx > 0 && this.x > centerX) ||
           (this.dx < 0 && this.x < centerX) ||
           (this.dy > 0 && this.y > centerY) ||
           (this.dy < 0 && this.y < centerY);
 
-        // TH 1: Người chơi thả tay (phanh) hơi muộn khi lố qua ngã tư -> Hút giật lùi về tâm và phanh
         if (!activeKey && isMovingAway) {
           this.x = centerX;
           this.y = centerY;
           this.dx = 0;
           this.dy = 0;
         }
-        // TH 2: Bấm rẽ lúc chưa tới hoặc lố qua tâm -> Hút vào tâm và bẻ lái ngay lập tức
         else if (activeKey && (qDx !== this.dx || qDy !== this.dy)) {
           if (qDx !== -this.dx && qDy !== -this.dy) {
             // Loại trừ quay đầu
@@ -146,7 +141,6 @@ class Pacman {
       }
     }
 
-    // 2. Cho phép quay đầu xe (U-turn) lập tức bất cứ lúc nào
     if (activeKey) {
       if (qDx === -this.dx && this.dx !== 0) {
         this.dx = qDx;
@@ -157,34 +151,28 @@ class Pacman {
       }
     }
 
-    // 3. Logic lõi khi đi tới ĐÚNG TÂM của một ô
     if (this.x % SIZE === 0 && this.y % SIZE === 0) {
       let gridX = this.x / SIZE;
       let gridY = this.y / SIZE;
 
       if (activeKey) {
-        // Cố gắng rẽ
         if (isWalkable(gridX + qDx, gridY + qDy)) {
           this.dx = qDx;
           this.dy = qDy;
         }
-        // Nếu rẽ đâm tường, thử đi thẳng xem có vướng không
         else if (!isWalkable(gridX + this.dx, gridY + this.dy)) {
           this.dx = 0;
           this.dy = 0;
         }
       } else {
-        // Không giữ phím nào -> Phanh lại chuẩn xác
         this.dx = 0;
         this.dy = 0;
       }
     }
 
-    // 4. Cập nhật tọa độ di chuyển
     this.x += this.dx * this.speed;
     this.y += this.dy * this.speed;
 
-    // 5. Tính năng xuyên hầm ở rìa bản đồ
     if (this.x < -SIZE) this.x = canvas.width;
     if (this.x > canvas.width) this.x = -SIZE;
   }

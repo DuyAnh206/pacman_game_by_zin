@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pacman By ZinYeuChuot</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" />
+  </head>
+  <body>
+    <div id="game-container">
+      <div class="header">
+        <div id="score-text">SCORE<br /><span id="score">0</span></div>
+        <div id="cycle-text" style="color: #ffff00">
+          ROUND<br /><span id="cycle">1</span>
+        </div>
+        <div id="high-score-text">
+          HIGH SCORE<br /><span id="high-score">0</span>
+        </div>
+      </div>
+
+      <canvas id="gameCanvas" width="420" height="420"></canvas>
+
+      <div
+        style="
+          color: #888;
+          font-size: 10px;
+          margin-top: 15px;
+          text-align: center;
+          line-height: 1.8;
+        "
+      >
+        BẤM MŨI TÊN ĐỂ DI CHUYỂN<br />
+        BẤM <span style="color: #fff">[SPACE]</span> ĐỂ TẠM DỪNG (PAUSE)
+      </div>
+
+      <div id="game-over" class="hidden">
+        <h2>GAME OVER</h2>
+        <p>Nhấn phím SPACE để chơi lại</p>
+      </div>
+
+      <div id="love-message" class="hidden">
+        <div class="heart-badge">💖</div>
+        <div class="love-photo-container">
+          <img src="love.jpg" alt="Zin và Chuột" class="love-photo" />
+        </div>
+        <div class="heart-text">Zin Yêu Chuột</div>
+        <span class="sub-note">[SPACE] sang Round 11</span>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

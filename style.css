@@ -42,53 +42,76 @@ canvas {
   border-radius: 5px;
 }
 
+/* ==== START SCREEN (HƯỚNG DẪN) ==== */
 #start-screen {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: left;
-  background: rgba(0, 0, 0, 0.95);
-  padding: 20px;
+  background: rgba(0, 0, 5, 0.96);
+  padding: 16px 20px;
   border: 2px solid #1919A6;
-  box-shadow: 0 0 15px rgba(25, 25, 166, 0.8);
+  box-shadow: 0 0 15px rgba(25, 25, 166, 0.8), inset 0 0 10px rgba(25, 25, 166, 0.4);
   width: 390px;
+  border-radius: 8px;
   z-index: 30;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
 }
 
 #start-screen h2 {
   text-align: center;
   color: #ffff00;
-  margin-bottom: 15px;
   font-size: 16px;
-}
-
-.mechanics h3 {
-  color: #ffb8ae;
-  font-size: 10px;
-  margin-top: 12px;
-  margin-bottom: 6px;
-}
-
-.mechanics p {
-  font-size: 8.5px;
-  line-height: 1.6;
   margin-bottom: 4px;
+  text-shadow: 2px 2px 0px #ff0000;
+}
+
+.info-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 10px;
+  border-radius: 5px;
+  border-left: 3px solid #ffb8ae;
+}
+
+.info-section h3 {
+  color: #ffb8ae;
+  font-size: 9px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.info-section p {
+  font-size: 7.5px;
+  line-height: 1.6;
+  margin-bottom: 5px;
   color: #ccc;
 }
 
-.mechanics b {
-  color: #fff;
+.info-section p:last-child {
+  margin-bottom: 0;
 }
 
+.highlight { color: #ffff00 !important; }
+.danger { color: #ff0000 !important; animation: blink 1.5s infinite; }
+
+.ghost-red { color: #ff0000 !important; }
+.ghost-purple { color: #ff00ff !important; }
+.ghost-pink { color: #ffb8ff !important; }
+.ghost-green { color: #00ff00 !important; }
+.ghost-orange { color: #ffb852 !important; }
+.ghost-cyan { color: #00ffff !important; }
+
 .press-space {
-  margin-top: 20px;
+  margin-top: 8px;
   color: #ffff00;
   text-align: center;
   font-size: 11px;
 }
 
+/* ==== GAME OVER & LOVE MESSAGE ==== */
 #game-over {
   position: absolute;
   top: 50%;
@@ -167,19 +190,6 @@ canvas {
   animation: blink 1.6s infinite;
 }
 
-@keyframes pulseHeart {
-  0% { transform: scale(1); }
-  14% { transform: scale(1.25); }
-  28% { transform: scale(1); }
-  42% { transform: scale(1.2); }
-  70% { transform: scale(1); }
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 .hidden {
   display: none !important;
 }
@@ -201,6 +211,20 @@ canvas {
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid #220011;
+}
+
+/* ==== ANIMATIONS ==== */
+@keyframes pulseHeart {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.25); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.2); }
+  70% { transform: scale(1); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 @keyframes floatPhoto {

@@ -5,6 +5,7 @@ const highScoreEl = document.getElementById("high-score");
 const gameOverScreen = document.getElementById("game-over");
 const cycleEl = document.getElementById("cycle");
 const loveMessageScreen = document.getElementById("love-message");
+const startScreen = document.getElementById("start-screen");
 
 const chompSound = new Audio("sounds/chomp.mp3");
 const powerSound = new Audio("sounds/power.mp3");
@@ -19,6 +20,7 @@ let score = 0;
 let highScore = localStorage.getItem("pacmanHighScore") || 0;
 highScoreEl.innerText = highScore;
 
+let isIntro = true;
 let gameOver = false;
 let gameStarted = false;
 let isPaused = false;
@@ -62,13 +64,16 @@ let ghosts = [];
 let keysDown = [];
 
 window.addEventListener("keydown", (e) => {
-  //if (e.key === "Enter") {
-  //  cycleCount = 10;
-  //  remainingPellets = 0;
-  //}
-
+  if (e.key === "Enter") {
+    cycleCount = 10;
+    remainingPellets = 0;
+  }
+  
   if (e.code === "Space") {
-    if (gameOver) {
+    if (isIntro) {
+      isIntro = false;
+      startScreen.classList.add("hidden");
+    } else if (gameOver) {
       location.reload();
     } else if (isTransitioning) {
       isTransitioning = false;
@@ -82,7 +87,7 @@ window.addEventListener("keydown", (e) => {
     e.preventDefault();
   }
 
-  if (isPaused || isTransitioning) return;
+  if (isIntro || isPaused || isTransitioning) return;
 
   if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) {
     gameStarted = true;
@@ -323,7 +328,6 @@ class Ghost {
       }
     }
 
-    // --- ĐƯỜNG CONG TỐC ĐỘ ĐÃ GIẢM CỰC KỲ THẤP (Vòng 10 mới chỉ 0.95) ---
     let baseSpeed = 0.25;
     if (scaredModeTimer > 0) {
       baseSpeed = 0.25;
@@ -333,12 +337,11 @@ class Ghost {
       else if (cycleCount === 3) baseSpeed = 0.35;
       else if (cycleCount === 4) baseSpeed = 0.4;
       else if (cycleCount === 5) baseSpeed = 0.45;
-      else if (cycleCount === 6)
-        baseSpeed = 0.55; // Rùa bò
+      else if (cycleCount === 6) baseSpeed = 0.55;
       else if (cycleCount === 7) baseSpeed = 0.65;
       else if (cycleCount === 8) baseSpeed = 0.75;
       else if (cycleCount === 9) baseSpeed = 0.85;
-      else baseSpeed = 0.95; // Max speed chưa bằng 1 nửa Pacman (2.0)
+      else baseSpeed = 0.95;
     }
 
     if (isCruiseElroy && scaredModeTimer === 0) {
@@ -713,6 +716,14 @@ function handleLogic() {
 }
 
 function gameLoop() {
+  if (isIntro) {
+    drawMap();
+    pacman.draw();
+    ghosts.forEach((g) => g.draw());
+    requestAnimationFrame(gameLoop);
+    return;
+  }
+
   if (gameOver) {
     gameOverScreen.classList.remove("hidden");
     return;

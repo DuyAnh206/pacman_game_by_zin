@@ -64,10 +64,10 @@ let ghosts = [];
 let keysDown = [];
 
 window.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    cycleCount = 10;
-    remainingPellets = 0;
-  }
+  //if (e.key === "Enter") {
+  //  cycleCount = 10;
+  //  remainingPellets = 0;
+  //}
   
   if (e.code === "Space") {
     if (isIntro) {

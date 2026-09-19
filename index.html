@@ -26,24 +26,30 @@
       <canvas id="gameCanvas" width="420" height="420"></canvas>
 
       <div id="start-screen">
-        <h2>HƯỚNG DẪN SINH TỒN</h2>
-        <div class="mechanics">
-          <h3>🍎 Vật Phẩm</h3>
-          <p><b>Cherry (500đ):</b> Ra lúc 70%, 40%, 10% hạt. Tồn tại 10s an toàn.</p>
-          <p><b>Băng Tinh (300đ):</b> Ra lúc 85%, 55%, 25% hạt. Đóng băng ma.</p>
-          
-          <h3>👻 Đặc Tính Ma (Từ Round 6)</h3>
-          <p><b>Đỏ & Tím:</b> Truy đuổi trực diện theo đường ngắn nhất.</p>
-          <p><b>Hồng & Xanh lá:</b> Kẻ đánh chặn, đón lõng trước 4 ô.</p>
-          <p><b>Cam & Cyan:</b> Hèn nhát, lại gần dưới 8 ô sẽ bỏ chạy.</p>
-          
-          <h3>🌍 Các Giai Đoạn</h3>
-          <p><b>R1-R3 (Bình yên):</b> 2-3 ma đi dạo ngẫu nhiên. 7-10 Bánh to.</p>
-          <p><b>R4-R5 (Cảnh giác):</b> 4 ma, truy đuổi đường thẳng. 5-6 Bánh to.</p>
-          <p><b>R6-R7 (Trí tuệ):</b> 5 ma, kích hoạt tính cách riêng. 3-4 Bánh to.</p>
-          <p><b>R8-R9 (Sương mù):</b> 6 ma, sương mù che bản đồ. 2 Bánh to.</p>
-          <p><b>R10+ (Địa ngục):</b> 6 ma hồi sinh nhanh. Khu nhiều hạt làm chậm dễ chết.</p>
+        <h2>HƯỚNG DẪN</h2>
+        
+        <div class="info-section">
+          <h3>🍎 VẬT PHẨM</h3>
+          <p><span class="highlight">Cherry (500đ):</span> Ra lúc 70%, 40%, 10% hạt. Tồn tại 10s.</p>
+          <p><span class="highlight">Băng Tinh (300đ):</span> Ra lúc 85%, 55%, 25% hạt. Đóng băng ma.</p>
         </div>
+
+        <div class="info-section">
+          <h3>👻 ĐẶC TÍNH MA (Từ R6)</h3>
+          <p><span class="ghost-red">Đỏ</span> & <span class="ghost-purple">Tím</span>: Dò đường ngắn nhất để tông trực diện.</p>
+          <p><span class="ghost-pink">Hồng</span> & <span class="ghost-green">Xanh</span>: Nhắm vị trí trước 4 ô để đón lõng.</p>
+          <p><span class="ghost-orange">Cam</span> & <span class="ghost-cyan">Cyan</span>: Hoảng sợ quay xe nếu tới gần (<8 ô).</p>
+        </div>
+
+        <div class="info-section">
+          <h3>🌍 CÁC GIAI ĐOẠN</h3>
+          <p><span class="highlight">R1-R3:</span> Bình yên (2-3 ma lảng vảng, 7-10 bánh to).</p>
+          <p><span class="highlight">R4-R5:</span> Cảnh giác (4 ma đuổi theo hàng, 5-6 bánh).</p>
+          <p><span class="highlight">R6-R7:</span> Trí tuệ (5 ma tính cách riêng, 3-4 bánh).</p>
+          <p><span class="highlight">R8-R9:</span> Sương mù (6 ma, che toàn bộ map, 2 bánh).</p>
+          <p><span class="danger">R10+:</span> Địa ngục (6 ma, hồi sinh lẹ, ăn hạt bị giảm tốc).</p>
+        </div>
+
         <p class="blink press-space">[SPACE] ĐỂ BẮT ĐẦU</p>
       </div>
 
